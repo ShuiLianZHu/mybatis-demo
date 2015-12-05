@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 设置类的别名，如果不设置，在使用类型的地方需要把包的路径也加上 , 注：别名设置要放在environments前面 -->
+    <typeAliases>
+        <typeAlias alias="User" type="com.caizk.mybatis.entity.User"/>
+        <typeAlias alias="Person" type="com.caizk.mybatis.entity.Person"/>
+    </typeAliases>
+     
+    <!-- 如果没有在调用的时候 没有指定数据库环境时，默认创建连接id=development数据库环境的session -->
+    <environments default="development">
+        <!-- 开发环境数据  -->
+        <environment id="development">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="pooled">
+                <property name="driver" value="com.mysql.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_test"/>
+                <property name="username" value="test3"/>
+                <property name="password" value="123456"/>
+            </dataSource>
+        </environment>
+         
+    </environments>
+ 
+    <!-- SQL映射文件 -->
+    <mappers>
+        <!-- <package name="classpath:mapper/*-mapper.xml"/> -->
+        <mapper resource="mapper/user-mapper.xml"/>
+        <mapper resource="mapper/person-mapper.xml"/>
+        
+    </mappers>
+</configuration>

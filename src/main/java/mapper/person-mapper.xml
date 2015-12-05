@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caizk.mybatis.entity.Person">
+	<resultMap type="User" id="UserMapper">
+		<id column="user_id" property="userId" />
+		<result column="username" property="username" />
+		<result column="phone" property="phone" />
+		<result column="address" property="address" />
+		<result column="remark" property="remark" />
+	</resultMap>
+	<resultMap type="Person" id="PersonMapper">
+		<id column="id" property="id" />
+		<result column="age" property="age" />
+		<result column="gender" property="gender" />
+		<association property="user" javaType="User" resultMap="UserMapper"/>  
+	</resultMap>
+	
+	<select id="selectByAge" parameterType="map" resultMap="PersonMapper">
+		select * from person where age=#{age} and uid=#{uid};
+	</select>
+
+
+</mapper>
